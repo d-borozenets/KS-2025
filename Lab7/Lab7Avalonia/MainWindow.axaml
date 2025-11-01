@@ -1,0 +1,12 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Lab7AvaloniaSync.MainWindow"
+        Title="Async/Await Demo" Width="400" Height="200">
+    <StackPanel Margin="20">
+        <Button Content="Синхронно" Click="OnSyncClick" Margin="0,0,0,10"/>
+        <Button Content="Асинхронно" Click="OnAsyncClick" Margin="0,0,0,10"/>
+        <Button Content="Тест" Click="OnTestClick" Margin="0,0,0,10"/>
+        <TextBlock x:Name="Status" Text="Очікування..." FontSize="16"/>
+        <TextBlock x:Name="Test" Text="Тест..." FontSize="16"/>
+    </StackPanel>
+</Window>

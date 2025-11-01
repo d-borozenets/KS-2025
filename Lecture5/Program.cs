@@ -1,14 +1,14 @@
 ﻿class Program
 {
-    // static async Task Main(){
-        // await RunAwait();
-        // await RunContinue();
-    // }
-    static void Main(){
-        ParallelFor();
-        // Task t = RunContinue();
-        // t.Wait();
+    static async Task Main(){
+        await RunAwait();
+        await RunContinue();
     }
+    // static void Main(){
+    //     ParallelFor();
+    //     // Task t = RunContinue();
+    //     // t.Wait();
+    // }
 
     private static void ParallelFor(){
         Parallel.For(0, 10, i => {

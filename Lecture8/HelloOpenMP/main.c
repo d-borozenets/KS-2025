@@ -2,15 +2,16 @@
 #include <omp.h>
 #include <stdlib.h>
 
-// int main() {
-// #pragma omp parallel
-//     {
-//         int id = omp_get_thread_num();
-//         int n = omp_get_num_threads();
-//         printf("Hello from thread %d of %d\n", id, n);
-//     }
-//     return 0;
-// }
+int main() {
+
+#pragma omp parallel
+    {
+        int id = omp_get_thread_num();
+        int n = omp_get_num_threads();
+        printf("Hello from thread %d of %d\n", id, n);
+    }
+    return 0;
+}
 
 //----------------3.2-----------------
 // int main() {
@@ -84,20 +85,20 @@
 //     return 0;
 // }
 //----------------6.4-----------------
-int main() {
-    putenv("OMP_CANCELLATION=true");
-#pragma omp parallel for
-    for (int i = 0; i < 10; i++) {
-        if (i == 5) {
-            printf("Thread %d: condition met, cancelling loop\n",
-                   omp_get_thread_num());
-#pragma omp cancel for
-        }
-        printf("Thread %d processing i=%d\n",
-               omp_get_thread_num(), i);
-    }
-    return 0;
-}
+// int main() {
+//     putenv("OMP_CANCELLATION=true");
+// #pragma omp parallel for
+//     for (int i = 0; i < 10; i++) {
+//         if (i == 5) {
+//             printf("Thread %d: condition met, cancelling loop\n",
+//                    omp_get_thread_num());
+// #pragma omp cancel for
+//         }
+//         printf("Thread %d processing i=%d\n",
+//                omp_get_thread_num(), i);
+//     }
+//     return 0;
+// }
 
 
 //----------------7.4-----------------
