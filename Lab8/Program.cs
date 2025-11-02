@@ -4,8 +4,8 @@ using System.Threading;
 
 class Program{
     static int counter;
-    const int N = 200_000_000;
-    // const int N = 100_000; // use for quick debugging
+    // const int N = 200_000_000;
+    const int N = 100_000; // use for quick debugging
 
     static void Main(){
         Console.WriteLine("=== Lab 8: Basic Synchronization ===\n");
