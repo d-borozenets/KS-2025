@@ -39,8 +39,9 @@ static class Program{
         }
     }
 
-    private static void CalculateSumSeq(double[] a){Stopwatch sw = Stopwatch.StartNew();
+    private static void CalculateSumSeq(double[] doubles){
     }
+
 
     private static void CalculateSumWith3Tasks(double[] a){
     }
