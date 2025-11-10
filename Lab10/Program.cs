@@ -23,4 +23,18 @@ class Program{
 
     static void DatabaseTask(int id){
     }
+    // ---------------- CountdownEvent ----------------
+    static void CountdownExample(){
+    }
+
+    private static void CountdownWork(int id, CountdownEvent countdown){
+    }
+
+    // ---------------- ManualResetEvent ----------------
+    static void ManualResetExample(){
+    }
+
+    // ---------------- AutoResetEvent ----------------
+    static void AutoResetExample(){
+    }
 }
