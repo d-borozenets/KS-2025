@@ -2,7 +2,7 @@
 using System.Threading;
 
 class Program {
-    static ReaderWriterLockSlim rwLock = new ReaderWriterLockSlim();
+    static readonly ReaderWriterLockSlim rwLock = new();
     static int value = 0;
     private static bool running = true;
 

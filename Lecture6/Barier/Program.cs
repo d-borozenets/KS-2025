@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading;
 
-class Program {
-    static Barrier barrier = new Barrier(3, b => {
-        Console.WriteLine("=== Усі потоки завершили етап ===");
-    });
+class Program{
+    static readonly Barrier barrier = new(3, b => { Console.WriteLine("=== Усі потоки завершили етап ==="); });
 
-    static void DoWork(int id) {
+    static void DoWork(int id){
         Console.WriteLine($"Потік {id} виконує етап 1");
         Thread.Sleep(1000 + id * 200);
         barrier.SignalAndWait(); // чекає, поки всі дійдуть сюди
@@ -15,8 +13,9 @@ class Program {
         Thread.Sleep(800 + id * 150);
         barrier.SignalAndWait(); // чекає знову
     }
+    
 
-    static void Main() {
+    static void Main(){
         for (int i = 1; i <= 3; i++) {
             int localId = i;
             new Thread(() => DoWork(localId)).Start();

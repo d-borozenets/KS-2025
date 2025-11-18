@@ -6,7 +6,7 @@ class Program {
     static int counter = 0;
     static readonly object syncObj = new object();
     static SemaphoreSlim semaphore = new SemaphoreSlim(1);
-    static int N = 1_000_000;
+    static int N = 100_000_000;
     // static int N = 1_000;
 
     static void Measure(string name, Action action) {

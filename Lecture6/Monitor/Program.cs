@@ -23,7 +23,8 @@ class Program {
         lock (locker) {
             ready = true;
             Console.WriteLine("Головний потік подає сигнал.");
-            Monitor.Pulse(locker); // сигналізує очікуючому потоку
+            // Monitor.Pulse(locker); // сигналізує очікуючому потоку
+            // Console.WriteLine("Головний потік після пульс.");
         }
 
         t.Join();

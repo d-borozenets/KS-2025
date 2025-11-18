@@ -2,7 +2,7 @@
 using System.Threading;
 
 class Program {
-    static SemaphoreSlim semaphore = new SemaphoreSlim(3); // дозволяє до 3 потоків одночасно
+    static readonly SemaphoreSlim semaphore = new(1); // дозволяє до 3 потоків одночасно
 
     static void DoWork(int id) {
         Console.WriteLine($"Потік {id} чекає доступу...");

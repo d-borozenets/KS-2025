@@ -56,14 +56,16 @@
 //
 //     int owner[N];
 //     start = omp_get_wtime();
-//
-// // #pragma omp parallel for schedule(static, 4)
-// #pragma omp parallel for schedule(dynamic, 4)
-// // #pragma omp parallel for schedule(guided, 4)
+
+// #pragma omp parallel for schedule(static, 4)
+// #pragma omp parallel for schedule(dynamic)
+// #pragma omp parallel for schedule(guided, 4)
 //     for (int i = 0; i < N; i++) {
 //         int t = omp_get_thread_num();
 //         // for (volatile long j = 0; j < 10000000; j++); // simulate workload
-//         for (volatile long j = 0; j < (i + 1) * 500000000; j++);
+//
+//         for (volatile long j = 0; j < (i + 1) * 5000000000; j++);
+//
 //         printf("Iteration %2d job done by thread %d\n", i, t);
 //         owner[i] = omp_get_thread_num();
 //     }
@@ -93,12 +95,13 @@
 //     return 0;
 // }
 //----------------6.4-----------------
+// export OMP_CANCELLATION=true
 // int main() {
 //     putenv("OMP_CANCELLATION=true");
 //     omp_set_num_threads(4);
 // #pragma omp parallel for
 //     for (int i = 0; i < 20; i++) {
-//         printf("Thread %d processing i=%d\n", omp_get_thread_num(), i);
+//         // printf("Thread %d processing i=%d\n", omp_get_thread_num(), i);
 //         if (i == 1) {
 //             printf("Thread %d: condition met, cancelling loop\n",
 //                    omp_get_thread_num());

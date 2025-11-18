@@ -5,10 +5,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-class Server
-{
-    static async Task Main()
-    {
+class Server{
+    static async Task Main(){
         const int port = 9000;
         var listener = new TcpListener(IPAddress.Any, port);
         listener.Start();

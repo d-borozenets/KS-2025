@@ -14,7 +14,7 @@ class Program
         for (int i = 0; i < ITERATIONS_PER_THREAD; i++)
         {
             // Non-atomic operation: read -> modify -> write
-            // lock (locker) 
+            lock (locker) 
             {
                 counter++;   
             }

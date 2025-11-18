@@ -1,16 +1,31 @@
 ﻿using System;
 using System.IO.MemoryMappedFiles;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
-class Writer
-{
-    static void Main()
-    {
+class Writer{
+    static void Main(){
         const string mapName = "/mmf-demo";
+        const string path = "/tmp/mmf_lab12.bin";
         const int capacity = 4096;
 
-        using var mmf = MemoryMappedFile.CreateOrOpen(mapName, capacity);
+        bool useFile = RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ||
+                       RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+        MemoryMappedFile mmf;
+
+        if (useFile) {
+            // Для Linux/macOS створюємо MMF на базі реального файла
+            using var fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            fs.SetLength(capacity);
+            mmf = MemoryMappedFile.CreateFromFile(fs, null, capacity, MemoryMappedFileAccess.ReadWrite,
+                HandleInheritability.None, false);
+        } else {
+            // Для Windows можна створювати іменовану карту напряму
+            mmf = MemoryMappedFile.CreateOrOpen(mapName, capacity);
+        }
+
         using var accessor = mmf.CreateViewAccessor();
 
         // Clear flag
@@ -19,15 +34,14 @@ class Writer
         string message = "Hello from process 1!";
         byte[] data = Encoding.UTF8.GetBytes(message);
 
-        if (data.Length + 8 > capacity)
-        {
+        if (data.Length + 8 > capacity) {
             Console.WriteLine("Message too large.");
             return;
         }
 
         // Write length and payload
-        accessor.Write(4, data.Length);                 // length
-        accessor.WriteArray(8, data, 0, data.Length);   // bytes
+        accessor.Write(4, data.Length); // length
+        accessor.WriteArray(8, data, 0, data.Length); // bytes
 
         // Publish
         accessor.Write(0, 1); // flag = 1 (data ready)
