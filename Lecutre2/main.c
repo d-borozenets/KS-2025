@@ -9,7 +9,7 @@
 
 
 #define N 4
-#define REPEAT 100000000  // кількість повторів
+#define REPEAT 2000000000  // кількість повторів
 
 // Функція для вимірювання часу
 double get_time_in_seconds() {
@@ -17,7 +17,7 @@ double get_time_in_seconds() {
 }
 
 // ==========================================
-// 1️⃣ Варіант 1 — Звичайне послідовне додавання
+// Варіант 1 — Звичайне послідовне додавання
 // ==========================================
 void add_scalar(float *a, float *b, float *c) {
     double start = get_time_in_seconds();
@@ -52,9 +52,7 @@ void add_asm_neon(float *a, float *b, float *c) {
     printf("[ASM Neon] Time: %.6f s\n", end - start);
 }
 #else
-==========================================
-2️⃣ Варіант2 — Векторизація через SSE
-==========================================
+
 void add_sse(float *a, float *b, float *c) {
     double start = get_time_in_seconds();
 
@@ -70,9 +68,7 @@ void add_sse(float *a, float *b, float *c) {
     printf("[SSE] Time: %.6f s\n", end - start);
 }
 
-==========================================
-3️⃣ Варіант3 — Inline Assembly(ті ж SSE інструкції)
-==========================================
+
 void add_asm(float *a, float *b, float *c) {
     double start = get_time_in_seconds();
 
@@ -100,7 +96,7 @@ void add_asm(float *a, float *b, float *c) {
 int main() {
     float a[N] = {1.0f, 2.0f, 3.0f, 4.0f};
     float b[N] = {5.0f, 6.0f, 7.0f, 8.0f};
-    float c[N] = {0.0f};
+    float c[N] = {0.0f, 0.0f, 0.0f, 0.0f};
 
     printf("Vector addition demo (N=%d, repeats=%d)\n\n", N, REPEAT);
 

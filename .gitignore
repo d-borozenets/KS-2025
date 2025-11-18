@@ -3,5 +3,7 @@
 *\obj
 *\bin
 /Lecture6/Barier/obj
-*.txt
+input*.txt
 Lecture8/HelloOpenMP/main.exe
+*.exe
+/Lecutre2/cmake-build-debug

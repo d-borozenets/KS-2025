@@ -1,0 +1,31 @@
+gcc main.c -o demo.exe                                
+PS D:\gits\KS-2025\Lecutre2> ./demo.exe                                            
+Vector addition demo (N=4, repeats=2000000000)
+
+[Scalar] Time: 13.222000 s
+[SSE] Time: 6.855000 s
+[ASM] Time: 3.043000 s
+
+
+gcc -O2 main.c -o demo_o2                             
+PS D:\gits\KS-2025\Lecutre2> ./demo_o2.exe                                         
+Vector addition demo (N=4, repeats=2000000000)
+
+[Scalar] Time: 2.668000 s
+[SSE] Time: 0.583000 s
+[ASM] Time: 0.561000 s
+
+gcc -O3 -march=native -fopt-info-vec main.c -o demo_o3
+-march=native - під просесор(мій i7)
+main.c:97:11: optimized: basic block part vectorized using 16 byte vectors
+main.c:98:11: optimized: basic block part vectorized using 16 byte vectors
+main.c:99:11: optimized: basic block part vectorized using 16 byte vectors
+PS D:\gits\KS-2025\Lecutre2> ./demo_o3.exe                                         
+Vector addition demo (N=4, repeats=2000000000)
+
+[Scalar] Time: 2.091000 s
+[SSE] Time: 0.555000 s
+[ASM] Time: 0.558000 s
+ 
+ 
+ при оптимізація _mm_loadu_ps - інлайниться
