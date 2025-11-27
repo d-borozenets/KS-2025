@@ -54,6 +54,7 @@ void pi_monte_carlo(int num_threads) {
 }
 
 int main(void) {
+
     // hello_from_threads();
     // sequential_fill();
     // parallel_fill();
